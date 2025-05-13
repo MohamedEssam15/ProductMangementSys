@@ -12,6 +12,8 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+    .postCss('resources/css/app.css', 'public/css')
+    .copy('node_modules/bootstrap/dist/css/bootstrap.min.css', 'public/css')
+    .copy('node_modules/bootstrap-icons/font/bootstrap-icons.css', 'public/css')
+    .copy('node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff', 'public/fonts')
+    .copy('node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2', 'public/fonts');
