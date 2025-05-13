@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\ProductStatus;
+use App\Utilities\FilterBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -41,6 +41,14 @@ class Product extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function scopeFilterBy($query, $filters)
+    {
+        $namespace = 'App\Utilities\ProductFilters';
+        $filter = new FilterBuilder($query, $filters, $namespace);
+
+        return $filter->apply();
     }
 
     /**
